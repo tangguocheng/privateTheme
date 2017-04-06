@@ -24,7 +24,7 @@ menu:
   - page: about
     directory: about/
     icon: fa-user
-    
+
 widgetsEnable: false  
 
 widgets: ## Six widgets in sidebar provided: search, category, tag, recent_posts, rencent_comments and links.

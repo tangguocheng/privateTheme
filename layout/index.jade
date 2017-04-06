@@ -12,49 +12,46 @@ block title
 block content
     div.weather
     .aplayer#player1
-    if page.category || page.tag
-        h1.label-title=  __('reading_label', page.category || page.tag)
     .post
         .post-archive
             //Use lodash to classify posts. See https://lodash.com/docs#groupBy
             each posts, year in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
-                h2= -year
-                ul.listing
-                    for post in posts
-                        li
-                            span.date= post.date.format('YYYY-MM-DD')
-                            a(href=url_for(post.path), title=post.title)
-                                +title(post)
+                span.hidden
+                for post in posts
+                    span.date= post.date.format('YYYY-MM-DD')
+                    a.index_a(href=url_for(post.path), title=post.title)
+                        +title(post)
+                    br
 
     include _partial/paginator.jade
-    
+
     if theme.APlayer
     script.
         if (document.getElementById('player1')){
             var ap = new APlayer({
-                element: document.getElementById('player1'),                       
-                narrow: false,                                                     
-                autoplay: false,                                                    
-                showlrc: 3,                                                        
-                mutex: true,                                                       
-                theme: '#e6d0b2',                                                  
-                mode: 'random',                                                   
-                preload: 'metadata',                                               
-                listmaxheight: '513px',                                             
+                element: document.getElementById('player1'),
+                narrow: false,
+                autoplay: false,
+                showlrc: 3,
+                mutex: true,
+                theme: '#e6d0b2',
+                mode: 'random',
+                preload: 'metadata',
+                listmaxheight: '513px',
                 music: [
-                    {                                                           
+                    {
                         title: '独家记忆',
-                        author: '陈小春', 
+                        author: '陈小春',
                         url: 'http://p2.music.126.net/zR3QVtHGC6aRNuHG7na-EQ==/3333719255471444.mp3',
                         pic: 'http://p3.music.126.net/bY1nZiF3ey2c_rc9GWfcqA==/7786741349031142.jpg',
-                        lrc: '/lrc/dujiajiyi.lrc'     
+                        lrc: '/lrc/dujiajiyi.lrc'
                     },
-                    {                                                           
+                    {
                         title: '所幸',
-                        author: '阿肆', 
+                        author: '阿肆',
                         url: 'http://p2.music.126.net/NIiKgScDiH2VmFyFPFk2Dg==/2946691212758027.mp3',
-                        pic: 'http://p4.music.126.net/OXLGLqHFaKzysi_a8n5cog==/3446968962483422.jpg', 
-                        lrc: '/lrc/suoxing.lrc'  
+                        pic: 'http://p4.music.126.net/OXLGLqHFaKzysi_a8n5cog==/3446968962483422.jpg',
+                        lrc: '/lrc/suoxing.lrc'
                     }
                 ]
             });
